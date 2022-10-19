@@ -7,6 +7,7 @@ const Sidebar = () => {
     <ul className={styNavBar}>
       <div className={stySidebarBrand}>SB Admin</div>
       <Accordion />
+      <Accordion />
     </ul>
   );
 };
