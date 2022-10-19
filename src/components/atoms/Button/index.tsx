@@ -4,6 +4,7 @@ import {
   styBtnBackground,
   styBtnIconSplit,
   styBtnIcon,
+  styBtnSmall,
 } from './styles';
 import { cx } from '@emotion/css';
 import { Colors } from '../../../utils';
@@ -11,7 +12,7 @@ import { ButtonProps } from '../../../@types/button';
 import IconOnly from './iconOnly';
 
 const Button = (props: ButtonProps) => {
-  const { type, text, isSplit, icon } = props;
+  const { type, text, isSplit, icon, isSmall } = props;
   const [typeColor, setTypeColor] = useState(Colors.primary);
 
   useEffect(() => {
@@ -43,7 +44,16 @@ const Button = (props: ButtonProps) => {
   if (isSplit) {
     return (
       <button
-        className={cx(styButton, styBtnBackground(typeColor), styBtnIconSplit)}
+        className={
+          isSmall
+            ? cx(
+                styButton,
+                styBtnBackground(typeColor),
+                styBtnIconSplit,
+                styBtnSmall
+              )
+            : cx(styButton, styBtnBackground(typeColor), styBtnIconSplit)
+        }
       >
         <span className={styBtnIcon}>
           <IconOnly icon={icon} />
@@ -56,7 +66,11 @@ const Button = (props: ButtonProps) => {
   return (
     <button
       type="button"
-      className={cx(styButton, styBtnBackground(typeColor))}
+      className={
+        isSmall
+          ? cx(styBtnBackground(typeColor), styBtnSmall)
+          : cx(styButton, styBtnBackground(typeColor))
+      }
     >
       {text}
     </button>

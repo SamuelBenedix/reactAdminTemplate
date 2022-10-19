@@ -4,4 +4,5 @@ export interface ButtonProps {
  text: string;
  isSplit?: boolean;
  icon?: string;
+ isSmall?: boolean;
 }

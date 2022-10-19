@@ -10,10 +10,9 @@ export const styButton = css`
   user-select: none;
   background-color: transparent;
   border: 1px solid transparent;
-  padding: 0.375rem 0.75rem;
+  padding: 0.4rem 0.75rem;
   font-size: 1rem;
-  line-height: 1.5;
-  border-radius: 0.35rem;
+  border-radius: 0.2rem;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
     border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 
@@ -58,16 +57,27 @@ export const styBtnBackground = (color: {
 
 export const styBtnIconSplit = css`
   padding: 0;
-  overflow: hidden;
   display: inline-flex;
   align-items: stretch;
   justify-content: center;
   span {
-    display: inline-flex;
+    display: inline-block;
     padding: 0.375rem 0.75rem;
   }
 `;
 
 export const styBtnIcon = css`
   background: rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+`;
+
+export const styBtnSmall = css`
+  border-radius: 0.1rem;
+  span {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+  }
 `;
