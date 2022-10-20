@@ -1,17 +1,23 @@
 import React from 'react';
 import { IconProps } from '../../../@types/icon';
-import { IcAddWhite, IcTrash } from '../../../assets';
+import { IcTrash } from '../../../assets';
+// import { IcAddWhite, IcTrash } from '../../../assets';
 
 const IconOnly = (props: IconProps) => {
-  const { icon } = props;
+  const { icon, color, isOutline = false } = props;
   const Icon = () => {
     switch (icon) {
       case 'add':
-        return <img src={IcAddWhite} alt="add" />;
+        return <div>test</div>;
       case 'trash':
-        return <img src={IcTrash} alt="trash" />;
+        return (
+          <IcTrash
+            stroke="none"
+            fill={isOutline ? color.backgroundColor : color.color}
+          />
+        );
       default:
-        return <img src={IcAddWhite} alt="add" />;
+        return <div>test</div>;
     }
   };
   return <Icon />;

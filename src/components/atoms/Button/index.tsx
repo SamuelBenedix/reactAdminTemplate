@@ -81,7 +81,7 @@ const Button = (props: ButtonProps) => {
         )}
         type="button"
       >
-        <IconOnly icon={icon} />
+        <IconOnly icon={icon} color={typeColor} isOutline={isOutline} />
       </button>
     );
   }
@@ -105,7 +105,7 @@ const Button = (props: ButtonProps) => {
         }
       >
         <span className={styBtnIcon}>
-          <IconOnly icon={icon} />
+          <IconOnly icon={icon} color={typeColor} />
         </span>
         <span>{text}</span>
       </button>
