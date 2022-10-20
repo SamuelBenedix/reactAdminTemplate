@@ -47,4 +47,10 @@ export const Colors = {
     backgroundColorHover: '#ececec',
     borderColorHover: '#e6e6e6',
   },
+  link: {
+    color: '#007bff',
+    backgroundColor: 'transparent',
+    backgroundColorHover: 'transparent',
+    borderColorHover: 'transparent',
+  },
 };

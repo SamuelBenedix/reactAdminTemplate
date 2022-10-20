@@ -1,12 +1,12 @@
-
+import React from "react";
 export interface ButtonProps {
- type?: 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info' | 'light' | 'dark';
- text: string;
+ type: 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info' | 'light' | 'dark' | 'link';
+ size?: 'small' | 'medium' | 'large';
+ children: React.ReactNode;
  isSplit?: boolean;
  icon?: string;
- isSmall?: boolean;
- isLink?: boolean;
  isRounded?: boolean;
  isOutline?: boolean;
  isIcon?: boolean;
+ isBlock?: boolean;
 }

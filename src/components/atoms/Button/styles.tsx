@@ -1,7 +1,11 @@
 import { css } from '@emotion/css';
 import { Colors } from '../../../utils';
 
-export const styBtn = (isRounded: boolean) => css`
+export const styBtn = (
+  isRounded: boolean,
+  size: string,
+  isLink?: boolean
+) => css`
   font-size: 0.9375rem;
   line-height: 1;
   font-weight: 500;
@@ -12,7 +16,13 @@ export const styBtn = (isRounded: boolean) => css`
   vertical-align: middle;
   user-select: none;
   border: 1px solid transparent;
-  padding: 0.375rem 0.75rem;
+
+  padding: ${size === 'large'
+    ? '1rem 3rem'
+    : size === 'small'
+    ? '.25rem .5rem;'
+    : '.375rem .75rem'};
+
   border-radius: ${isRounded ? '50px' : '0.1875rem'};
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
     border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
@@ -22,12 +32,17 @@ export const styBtn = (isRounded: boolean) => css`
   }
 
   &:hover {
-    text-decoration: none;
+    text-decoration: ${isLink ? 'underline' : 'none'};
   }
 `;
 
 export const styBtnFw = css`
   min-width: 150px;
+`;
+
+export const styBtnBlock = css`
+  display: block;
+  width: 100%;
 `;
 
 export const styBtnBackground = (
@@ -88,8 +103,8 @@ export const styBtnIconSplit = css`
   }
 `;
 
-export const styBtnIcon = css`
-  background: rgba(0, 0, 0, 0.15);
+export const styBtnIcon = (isOutline: boolean) => css`
+  background: ${!isOutline && 'rgba(0, 0, 0, 0.15)'};
   display: flex;
   align-items: center;
   justify-content: center;

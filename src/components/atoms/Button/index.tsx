@@ -3,11 +3,11 @@ import {
   styBtnBackground,
   styBtnIconSplit,
   styBtnIcon,
-  styBtnSmall,
   styBtn,
   styBtnFw,
   styBtnLink,
   styBtnIc,
+  styBtnBlock,
 } from './styles';
 import { cx } from '@emotion/css';
 import { Colors } from '../../../utils';
@@ -17,163 +17,126 @@ import IconOnly from './iconOnly';
 const Button = (props: ButtonProps) => {
   const {
     type,
-    text,
+    children,
     isSplit,
     icon,
-    isSmall,
-    isLink,
+    isBlock = false,
     isRounded = false,
     isOutline = false,
+    size = 'medium',
     isIcon,
   } = props;
-  const [typeColor, setTypeColor] = useState(Colors.primary);
+  const [typeColor, setTypeColor] = useState({
+    color: '',
+    backgroundColor: '',
+    backgroundColorHover: '',
+    borderColorHover: '',
+  });
 
-  const [icColorNew, setIcColorNew] = useState('#fff');
+  const [icColor, setIcColor] = useState('#fff');
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleMouseEnter = () => {
-    setIcColorNew(typeColor.color);
-    console.log(icColorNew);
+    setIcColor(typeColor.color);
   };
   const handleMouseLeave = () => {
-    setIcColorNew(isOutline ? typeColor.backgroundColor : typeColor.color);
-    console.log(icColorNew);
+    setIcColor(isOutline ? typeColor.backgroundColor : typeColor.color);
   };
 
   useEffect(() => {
-    switch (type) {
-      case 'primary':
-        setTypeColor(Colors.primary);
-        setIcColorNew(
-          isOutline ? Colors.primary.backgroundColor : Colors.primary.color
-        );
-        break;
-      case 'secondary':
-        setTypeColor(Colors.secondary);
-        setIcColorNew(
-          isOutline ? Colors.secondary.backgroundColor : Colors.secondary.color
-        );
-        break;
-      case 'info':
-        setTypeColor(Colors.info);
-        setIcColorNew(
-          isOutline ? Colors.info.backgroundColor : Colors.info.color
-        );
-        break;
-      case 'danger':
-        setTypeColor(Colors.danger);
-        setIcColorNew(
-          isOutline ? Colors.danger.backgroundColor : Colors.danger.color
-        );
-        break;
-      case 'warning':
-        setTypeColor(Colors.warning);
-        setIcColorNew(
-          isOutline ? Colors.warning.backgroundColor : Colors.warning.color
-        );
-        break;
-      case 'success':
-        setTypeColor(Colors.success);
-        setIcColorNew(
-          isOutline ? Colors.success.backgroundColor : Colors.success.color
-        );
-        break;
-      case 'light':
-        setTypeColor(Colors.light);
-        setIcColorNew(
-          isOutline ? Colors.light.backgroundColor : Colors.light.color
-        );
-        break;
-      case 'dark':
-        setTypeColor(Colors.dark);
-        setIcColorNew(
-          isOutline ? Colors.dark.backgroundColor : Colors.dark.color
-        );
-        break;
-      default:
-        setTypeColor(Colors.primary);
-        setIcColorNew(
-          isOutline ? Colors.primary.backgroundColor : Colors.primary.color
-        );
-        break;
-    }
+    setTypeColor(Colors[type]);
+    setIcColor(
+      isOutline ? Colors[type].backgroundColor : Colors[type]['color']
+    );
+    setIsLoading(true);
   }, [type, isOutline]);
 
-  if (isLink) {
+  if (type === 'link') {
     return (
-      <button
-        type="button"
-        className={cx(styBtn(isRounded), styBtnFw, styBtnLink)}
-      >
-        {text}
-      </button>
-    );
-  }
-
-  if (isIcon) {
-    return (
-      <button
-        className={cx(
-          styBtn(isIcon),
-          styBtnBackground(typeColor, isOutline),
-          styBtnIc
+      <React.Fragment>
+        {isLoading && (
+          <button
+            type="button"
+            className={cx(
+              styBtn(isRounded, size, type === 'link'),
+              styBtnFw,
+              styBtnLink
+            )}
+          >
+            {children}
+          </button>
         )}
-        type="button"
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-      >
-        <IconOnly
-          icon={icon}
-          color={typeColor}
-          isOutline={isOutline}
-          icColor={icColorNew}
-        />
-      </button>
+      </React.Fragment>
     );
   }
 
   if (isSplit) {
     return (
-      <button
-        className={
-          isSmall
-            ? cx(
-                styBtn(isRounded),
-                styBtnBackground(typeColor, isOutline),
-                styBtnIconSplit,
-                styBtnSmall
-              )
-            : cx(
-                styBtn(isRounded),
-                styBtnBackground(typeColor, isOutline),
-                styBtnIconSplit
-              )
-        }
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-      >
-        <span className={styBtnIcon}>
-          <IconOnly icon={icon} color={typeColor} icColor={icColorNew} />
-        </span>
-        <span>{text}</span>
-      </button>
+      <React.Fragment>
+        {isLoading && (
+          <button
+            className={cx(
+              styBtn(isRounded, size),
+              styBtnBackground(typeColor, isOutline),
+              styBtnIconSplit
+            )}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+          >
+            <span className={styBtnIcon(isOutline)}>
+              <IconOnly icon={icon} icColor={icColor} />
+            </span>
+            <span>{children}</span>
+          </button>
+        )}
+      </React.Fragment>
+    );
+  }
+
+  if (isIcon) {
+    return (
+      <React.Fragment>
+        {isLoading && (
+          <button
+            className={cx(
+              styBtn(isIcon, size),
+              styBtnBackground(typeColor, isOutline),
+              styBtnIc
+            )}
+            type="button"
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+          >
+            <IconOnly icon={icon} icColor={icColor} />
+          </button>
+        )}
+      </React.Fragment>
     );
   }
 
   return (
-    <button
-      type="button"
-      className={
-        isSmall
-          ? cx(styBtnBackground(typeColor, isOutline), styBtnSmall)
-          : cx(
-              styBtn(isRounded),
-              styBtnBackground(typeColor, isOutline),
-              styBtnFw
-            )
-      }
-    >
-      {text}
-    </button>
+    <React.Fragment>
+      {isLoading && (
+        <button
+          type="button"
+          className={
+            isBlock
+              ? cx(
+                  styBtn(isRounded, size),
+                  styBtnBackground(typeColor, isOutline),
+                  styBtnBlock
+                )
+              : cx(
+                  styBtn(isRounded, size),
+                  styBtnBackground(typeColor, isOutline),
+                  styBtnFw
+                )
+          }
+        >
+          {children}
+        </button>
+      )}
+    </React.Fragment>
   );
 };
 

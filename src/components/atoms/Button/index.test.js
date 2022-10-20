@@ -5,7 +5,7 @@ import { Colors } from '../../../utils';
 
 describe('Button', () => {
   test('Should render a button with the class of primary with text', () => {
-    const { container } = render(<Button type="primary" text="primary" />);
+    const { container } = render(<Button type="primary" children="primary" />);
 
     const primaryButton = screen.getByRole('button');
     expect(primaryButton).toHaveStyle(
@@ -21,7 +21,9 @@ describe('Button', () => {
   });
 
   test('Should render a button with the class of secondary with text', () => {
-    const { container } = render(<Button type="secondary" text="secondary" />);
+    const { container } = render(
+      <Button type="secondary" children="secondary" />
+    );
     const secondaryButton = screen.getByRole('button');
     expect(secondaryButton).toHaveStyle(
       `background-color: ${Colors.secondary.backgroundColor};
@@ -36,7 +38,7 @@ describe('Button', () => {
   });
 
   test('Should render a button with the class of danger with text', () => {
-    const { container } = render(<Button type="danger" text="Danger" />);
+    const { container } = render(<Button type="danger" children="Danger" />);
     const dangerButton = screen.getByRole('button');
     expect(dangerButton).toHaveStyle(
       `background-color: ${Colors.danger.backgroundColor};
@@ -51,7 +53,7 @@ describe('Button', () => {
   });
 
   test('Should render a button with the class of info with text', () => {
-    const { container } = render(<Button type="info" text="Info" />);
+    const { container } = render(<Button type="info" children="Info" />);
 
     const infoButton = screen.getByRole('button');
     expect(infoButton).toHaveStyle(
@@ -67,7 +69,7 @@ describe('Button', () => {
   });
 
   test('Should render a button with the class of warning with text', () => {
-    const { container } = render(<Button type="warning" text="warning" />);
+    const { container } = render(<Button type="warning" children="warning" />);
 
     const warningButton = screen.getByRole('button');
     expect(warningButton).toHaveStyle(
@@ -83,7 +85,7 @@ describe('Button', () => {
   });
 
   test('Should render a button with the class of success with text', () => {
-    const { container } = render(<Button type="success" text="success" />);
+    const { container } = render(<Button type="success" children="success" />);
 
     const successButton = screen.getByRole('button');
     expect(successButton).toHaveStyle(
@@ -99,7 +101,7 @@ describe('Button', () => {
   });
 
   test('Should render a button with the class of primary with text and Icon', () => {
-    render(<Button type="primary" text="Add" isSplit icon="add" />);
+    render(<Button type="primary" children="Add" isSplit icon="add" />);
 
     const altText = screen.getByAltText('add');
     expect(altText).toBeInTheDocument();

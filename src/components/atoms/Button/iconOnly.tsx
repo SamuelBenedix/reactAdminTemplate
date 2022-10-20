@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { IconProps } from '../../../@types/icon';
 import { IcTrash } from '../../../assets';
-// import { IcAddWhite, IcTrash } from '../../../assets';
 
 const IconOnly = (props: IconProps) => {
-  const { icon, color, isOutline = false, icColor } = props;
+  const { icon, icColor } = props;
 
   const Icon = () => {
     switch (icon) {

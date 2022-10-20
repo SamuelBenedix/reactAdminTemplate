@@ -1,20 +1,32 @@
 import React from 'react';
-import { Accordion, Card, Sidebar, SubMenu, Button } from '../../components';
+import { Button } from '../../components';
 
 const Home = () => {
   return (
     <React.Fragment>
-      <Button type="primary" text="Primary" isRounded />
-      <Button type="secondary" text="Primary" />
-      <Button type="success" text="Primary" isOutline />
-      <Button type="danger" text="Primary" isOutline />
-      <Button type="warning" text="Primary" />
-      <Button type="info" text="Primary" />
-      <Button type="light" text="Primary" />
-      <Button type="dark" text="Primary" isOutline />
-      <Button text="Primary" isLink />
-      <Button text="Primary" type="danger" isIcon icon="trash" />
-      <Button text="Primary" type="dark" isIcon icon="trash" isOutline />
+      <Button type="primary" children="Primary" isRounded />
+      <Button type="secondary" children="Primary" size="small" isBlock />
+      <Button type="success" children="Primary" isOutline isBlock />
+      <Button type="danger" children="Primary" isOutline size="small" />
+      <Button
+        type="warning"
+        children="Primary"
+        size="large"
+        isBlock
+        isRounded
+      />
+      <Button type="info" children="Primary" size="small" />
+      <Button type="light" children="Primary" />
+      <Button type="dark" children="Primary" isOutline />
+      <Button type="link" children="Primary" />
+      <Button children="Primary" type="danger" isIcon icon="trash" />
+      <Button type="dark" isIcon icon="trash" isOutline>
+        test
+      </Button>
+
+      <Button isSplit type="danger" isIcon icon="trash" isOutline>
+        test
+      </Button>
     </React.Fragment>
   );
 };
