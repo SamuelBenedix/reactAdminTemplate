@@ -7,4 +7,5 @@ export interface IconProps {
   borderColorHover: string;
   color: string;
  },
+ icColor: string;
 }

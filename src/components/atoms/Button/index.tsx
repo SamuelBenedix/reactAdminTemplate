@@ -28,37 +28,75 @@ const Button = (props: ButtonProps) => {
   } = props;
   const [typeColor, setTypeColor] = useState(Colors.primary);
 
+  const [icColorNew, setIcColorNew] = useState('#fff');
+
+  const handleMouseEnter = () => {
+    setIcColorNew(typeColor.color);
+    console.log(icColorNew);
+  };
+  const handleMouseLeave = () => {
+    setIcColorNew(isOutline ? typeColor.backgroundColor : typeColor.color);
+    console.log(icColorNew);
+  };
+
   useEffect(() => {
     switch (type) {
       case 'primary':
         setTypeColor(Colors.primary);
+        setIcColorNew(
+          isOutline ? Colors.primary.backgroundColor : Colors.primary.color
+        );
         break;
       case 'secondary':
         setTypeColor(Colors.secondary);
+        setIcColorNew(
+          isOutline ? Colors.secondary.backgroundColor : Colors.secondary.color
+        );
         break;
       case 'info':
         setTypeColor(Colors.info);
+        setIcColorNew(
+          isOutline ? Colors.info.backgroundColor : Colors.info.color
+        );
         break;
       case 'danger':
         setTypeColor(Colors.danger);
+        setIcColorNew(
+          isOutline ? Colors.danger.backgroundColor : Colors.danger.color
+        );
         break;
       case 'warning':
         setTypeColor(Colors.warning);
+        setIcColorNew(
+          isOutline ? Colors.warning.backgroundColor : Colors.warning.color
+        );
         break;
       case 'success':
         setTypeColor(Colors.success);
+        setIcColorNew(
+          isOutline ? Colors.success.backgroundColor : Colors.success.color
+        );
         break;
       case 'light':
         setTypeColor(Colors.light);
+        setIcColorNew(
+          isOutline ? Colors.light.backgroundColor : Colors.light.color
+        );
         break;
       case 'dark':
         setTypeColor(Colors.dark);
+        setIcColorNew(
+          isOutline ? Colors.dark.backgroundColor : Colors.dark.color
+        );
         break;
       default:
         setTypeColor(Colors.primary);
+        setIcColorNew(
+          isOutline ? Colors.primary.backgroundColor : Colors.primary.color
+        );
         break;
     }
-  }, [type]);
+  }, [type, isOutline]);
 
   if (isLink) {
     return (
@@ -80,8 +118,15 @@ const Button = (props: ButtonProps) => {
           styBtnIc
         )}
         type="button"
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
       >
-        <IconOnly icon={icon} color={typeColor} isOutline={isOutline} />
+        <IconOnly
+          icon={icon}
+          color={typeColor}
+          isOutline={isOutline}
+          icColor={icColorNew}
+        />
       </button>
     );
   }
@@ -103,9 +148,11 @@ const Button = (props: ButtonProps) => {
                 styBtnIconSplit
               )
         }
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
       >
         <span className={styBtnIcon}>
-          <IconOnly icon={icon} color={typeColor} />
+          <IconOnly icon={icon} color={typeColor} icColor={icColorNew} />
         </span>
         <span>{text}</span>
       </button>

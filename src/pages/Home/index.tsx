@@ -14,7 +14,7 @@ const Home = () => {
       <Button type="dark" text="Primary" isOutline />
       <Button text="Primary" isLink />
       <Button text="Primary" type="danger" isIcon icon="trash" />
-      <Button text="Primary" type="primary" isIcon isOutline icon="trash" />
+      <Button text="Primary" type="dark" isIcon icon="trash" isOutline />
     </React.Fragment>
   );
 };
