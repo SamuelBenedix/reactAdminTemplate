@@ -20,7 +20,7 @@ export const styBtn = (
   padding: ${size === 'large'
     ? '1rem 3rem'
     : size === 'small'
-    ? '.25rem .5rem;'
+    ? '.25rem .5rem'
     : '.375rem .75rem'};
 
   border-radius: ${isRounded ? '50px' : '0.1875rem'};
@@ -56,7 +56,6 @@ export const styBtnBackground = (
 ) => css`
   background-color: ${isOutline ? 'transparent' : color.backgroundColor};
   border-color: ${color.backgroundColor};
-
   color: ${isOutline ? color.backgroundColor : color.color};
 
   &:hover {

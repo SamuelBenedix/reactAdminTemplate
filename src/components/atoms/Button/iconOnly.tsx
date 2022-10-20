@@ -10,7 +10,7 @@ const IconOnly = (props: IconProps) => {
       case 'add':
         return <div>test</div>;
       case 'trash':
-        return <IcTrash stroke="none" fill={icColor} />;
+        return <IcTrash stroke="none" fill={icColor} alt="trash" />;
       default:
         return <div>test</div>;
     }
