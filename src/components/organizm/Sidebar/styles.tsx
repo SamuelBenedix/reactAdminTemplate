@@ -15,12 +15,13 @@ export const styNavBar = css`
   margin: 0;
 
   @media (min-width: 768px) {
-    width: 14rem !important;
+    width: 14rem;
   }
 `;
 
 export const stySidebarBrand = css`
   color: #fff;
+
   height: 4.375rem;
   text-decoration: none;
   font-size: 1rem;
@@ -30,6 +31,7 @@ export const stySidebarBrand = css`
   text-transform: uppercase;
   letter-spacing: 0.05rem;
   z-index: 1;
+
   display: flex;
   align-items: center;
   justify-content: center;

@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import {
-  styButton,
   styBtnBackground,
   styBtnIconSplit,
   styBtnIcon,
   styBtnSmall,
+  styBtn,
+  styBtnFw,
+  styBtnLink,
+  styBtnIc,
 } from './styles';
 import { cx } from '@emotion/css';
 import { Colors } from '../../../utils';
@@ -12,7 +15,17 @@ import { ButtonProps } from '../../../@types/button';
 import IconOnly from './iconOnly';
 
 const Button = (props: ButtonProps) => {
-  const { type, text, isSplit, icon, isSmall } = props;
+  const {
+    type,
+    text,
+    isSplit,
+    icon,
+    isSmall,
+    isLink,
+    isRounded = false,
+    isOutline = false,
+    isIcon,
+  } = props;
   const [typeColor, setTypeColor] = useState(Colors.primary);
 
   useEffect(() => {
@@ -35,11 +48,43 @@ const Button = (props: ButtonProps) => {
       case 'success':
         setTypeColor(Colors.success);
         break;
+      case 'light':
+        setTypeColor(Colors.light);
+        break;
+      case 'dark':
+        setTypeColor(Colors.dark);
+        break;
       default:
         setTypeColor(Colors.primary);
         break;
     }
   }, [type]);
+
+  if (isLink) {
+    return (
+      <button
+        type="button"
+        className={cx(styBtn(isRounded), styBtnFw, styBtnLink)}
+      >
+        {text}
+      </button>
+    );
+  }
+
+  if (isIcon) {
+    return (
+      <button
+        className={cx(
+          styBtn(isIcon),
+          styBtnBackground(typeColor, isOutline),
+          styBtnIc
+        )}
+        type="button"
+      >
+        <IconOnly icon={icon} />
+      </button>
+    );
+  }
 
   if (isSplit) {
     return (
@@ -47,12 +92,16 @@ const Button = (props: ButtonProps) => {
         className={
           isSmall
             ? cx(
-                styButton,
-                styBtnBackground(typeColor),
+                styBtn(isRounded),
+                styBtnBackground(typeColor, isOutline),
                 styBtnIconSplit,
                 styBtnSmall
               )
-            : cx(styButton, styBtnBackground(typeColor), styBtnIconSplit)
+            : cx(
+                styBtn(isRounded),
+                styBtnBackground(typeColor, isOutline),
+                styBtnIconSplit
+              )
         }
       >
         <span className={styBtnIcon}>
@@ -68,8 +117,12 @@ const Button = (props: ButtonProps) => {
       type="button"
       className={
         isSmall
-          ? cx(styBtnBackground(typeColor), styBtnSmall)
-          : cx(styButton, styBtnBackground(typeColor))
+          ? cx(styBtnBackground(typeColor, isOutline), styBtnSmall)
+          : cx(
+              styBtn(isRounded),
+              styBtnBackground(typeColor, isOutline),
+              styBtnFw
+            )
       }
     >
       {text}

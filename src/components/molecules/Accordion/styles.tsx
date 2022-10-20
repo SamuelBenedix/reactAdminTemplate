@@ -5,9 +5,14 @@ export const styNavItem = css`
 `;
 
 export const styNavLink = css`
+  position: relative;
+
+  text-align: center;
+  padding: 0.75rem 1rem;
+  width: 6.5rem;
+
   color: rgba(255, 255, 255, 0.8);
   font-weight: 700;
-  position: relative;
   background-color: transparent;
   border: 1px solid transparent;
   cursor: pointer;
@@ -24,13 +29,10 @@ export const styNavLink = css`
     width: 14rem;
   }
 
-  @media (min-width: 768px) &&::after {
-    content: '\f105';
-  }
-
   span {
     font-size: 0.65rem;
     display: block;
+
     @media (min-width: 768px) {
       font-size: 0.85rem;
       display: inline;
@@ -43,6 +45,11 @@ export const styCollapse = css`
   left: calc(6.5rem + 1.5rem / 2);
   z-index: 1;
   display: none;
+
+  animation-name: growIn;
+  animation-duration: 200ms;
+  animation-timing-function: transform cubic-bezier(0.18, 1.25, 0.4, 1),
+    opacity cubic-bezier(0, 1, 0.4, 1);
 
   @media (min-width: 768px) {
     position: relative;

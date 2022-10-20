@@ -18,10 +18,22 @@ const Accordion = () => {
 
   return (
     <li className={styNavItem}>
-      <button onClick={onClick} className={styNavLink}>
+      <button
+        onClick={onClick}
+        className={styNavLink}
+        data-toggle="collapse"
+        data-target="test"
+        aria-expanded="true"
+        aria-controls="test"
+      >
         <span>Component</span>
       </button>
-      <div className={active ? cx(styCollapse, styCollapseShow) : styCollapse}>
+      <div
+        id="test"
+        className={active ? cx(styCollapse, styCollapseShow) : styCollapse}
+        data-parent="#accordionSidebar"
+        aria-labelledby="headingTwo"
+      >
         <div
           className={
             active

@@ -9,7 +9,9 @@ describe('Button', () => {
 
     const primaryButton = screen.getByRole('button');
     expect(primaryButton).toHaveStyle(
-      `background-color: ${Colors.primary.normal};`
+      `background-color: ${Colors.primary.backgroundColor};
+       color: ${Colors.primary.color};
+      `
     );
 
     const btnText = screen.getByText(/primary/i);
@@ -22,7 +24,9 @@ describe('Button', () => {
     const { container } = render(<Button type="secondary" text="secondary" />);
     const secondaryButton = screen.getByRole('button');
     expect(secondaryButton).toHaveStyle(
-      `background-color: ${Colors.secondary.normal};`
+      `background-color: ${Colors.secondary.backgroundColor};
+       color: ${Colors.secondary.color};
+       `
     );
 
     const btnText = screen.getByText(/secondary/i);
@@ -35,7 +39,9 @@ describe('Button', () => {
     const { container } = render(<Button type="danger" text="Danger" />);
     const dangerButton = screen.getByRole('button');
     expect(dangerButton).toHaveStyle(
-      `background-color: ${Colors.danger.normal};`
+      `background-color: ${Colors.danger.backgroundColor};
+       color: ${Colors.danger.color};
+      `
     );
 
     const btnText = screen.getByText(/danger/i);
@@ -48,7 +54,11 @@ describe('Button', () => {
     const { container } = render(<Button type="info" text="Info" />);
 
     const infoButton = screen.getByRole('button');
-    expect(infoButton).toHaveStyle(`background-color: ${Colors.info.normal};`);
+    expect(infoButton).toHaveStyle(
+      `background-color: ${Colors.info.backgroundColor};
+       color: ${Colors.info.color};
+      `
+    );
 
     const btnText = screen.getByText(/info/i);
     expect(btnText).toBeInTheDocument();
@@ -61,7 +71,9 @@ describe('Button', () => {
 
     const warningButton = screen.getByRole('button');
     expect(warningButton).toHaveStyle(
-      `background-color: ${Colors.warning.normal};`
+      `background-color: ${Colors.warning.backgroundColor};
+       color: ${Colors.warning.color};
+      `
     );
 
     const btnText = screen.getByText(/warning/i);
@@ -75,7 +87,9 @@ describe('Button', () => {
 
     const successButton = screen.getByRole('button');
     expect(successButton).toHaveStyle(
-      `background-color: ${Colors.success.normal};`
+      `background-color: ${Colors.success.backgroundColor};
+       color: ${Colors.success.color};
+      `
     );
 
     const btnText = screen.getByText(/success/i);
