@@ -10,6 +10,8 @@ export const styBtn = (
   line-height: 1;
   font-weight: 500;
 
+  white-space: nowrap;
+
   padding: ${size === 'large'
     ? '1rem 3rem'
     : size === 'small'
@@ -26,6 +28,17 @@ export const styBtn = (
 
   &:hover {
     text-decoration: ${isLink ? 'underline' : 'none'};
+  }
+
+  &::after {
+    display: inline-block;
+    margin-left: 0.255em;
+    vertical-align: 0.255em;
+    content: '';
+    border-top: 0.3em solid;
+    border-right: 0.3em solid transparent;
+    border-bottom: 0;
+    border-left: 0.3em solid transparent;
   }
 `;
 
@@ -63,18 +76,6 @@ export const styBtnBackground = (
     color: ${Colors.light.backgroundColor};
     background-color: ${color.backgroundColorHover};
     border-color: ${color.borderColorHover};
-  }
-`;
-
-export const styBtnLink = css`
-  background-color: transparent;
-  font-weight: 500;
-  color: #007bff;
-  text-decoration: none;
-
-  &:hover {
-    color: #0056b3;
-    text-decoration: underline;
   }
 `;
 

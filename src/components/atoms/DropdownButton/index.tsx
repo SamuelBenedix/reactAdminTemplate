@@ -5,7 +5,6 @@ import {
   styBtnIcon,
   styBtn,
   styBtnFw,
-  styBtnLink,
   styBtnIc,
   styBtnBlock,
 } from './styles';
@@ -14,7 +13,7 @@ import { Colors } from '../../../utils';
 import { ButtonProps } from '../../../@types/button';
 import IconOnly from './iconOnly';
 
-const Button = (props: ButtonProps) => {
+const DropdownButton = (props: ButtonProps) => {
   const {
     type,
     children,
@@ -51,26 +50,6 @@ const Button = (props: ButtonProps) => {
     );
     setIsLoading(true);
   }, [type, isOutline]);
-
-  if (type === 'link') {
-    return (
-      <React.Fragment>
-        {isLoading && (
-          <button
-            onClick={onClick}
-            type="button"
-            className={cx(
-              styBtn(isRounded, size, type === 'link'),
-              styBtnFw,
-              styBtnLink
-            )}
-          >
-            {children}
-          </button>
-        )}
-      </React.Fragment>
-    );
-  }
 
   if (isSplit) {
     return (
@@ -145,4 +124,4 @@ const Button = (props: ButtonProps) => {
   );
 };
 
-export default Button;
+export default DropdownButton;

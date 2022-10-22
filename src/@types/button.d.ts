@@ -9,4 +9,5 @@ export interface ButtonProps {
  isOutline?: boolean;
  isIcon?: boolean;
  isBlock?: boolean;
+ onClick?: (event: React.MouseEvent) => void;
 }
