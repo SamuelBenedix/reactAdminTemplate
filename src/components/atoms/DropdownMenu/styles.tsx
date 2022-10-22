@@ -27,7 +27,10 @@ export const styDropdownMenu = css`
   bottom: auto;
 `;
 
-export const styDropdownMenuShow = css`
+export const styDropdownMenuShow = (
+  elementPosition: boolean,
+  size: string
+) => css`
   margin-top: 0.75rem;
   font-size: 0.875rem;
   box-shadow: none;
@@ -38,6 +41,12 @@ export const styDropdownMenuShow = css`
   visibility: visible;
   transition: visibility 1s, opacity 0.5s linear;
   opacity: 1;
+
+  transform: translate3d(
+    5px,
+    ${!elementPosition ? (size === 'large' ? '-130px' : '-100px') : '0px'},
+    0px
+  );
 
   display: block;
 `;

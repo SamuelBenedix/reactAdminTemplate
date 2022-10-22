@@ -1,18 +1,30 @@
 import { css } from '@emotion/css';
 
-export const styDropdown = css`
+export const styDropdown = (isUp: boolean) => css`
   display: inline-block;
   position: relative;
 
-  button:first-child:not([aria-label="dropdown"])::after {
+  button:first-child:not([aria-label='dropdown'])::after {
     display: inline-block;
-    margin-left: .255em;
-    vertical-align: .255em;
-    content: "";
-    border-top: .3em solid;
-    border-right: .3em solid transparent;
-    border-bottom: 0;
-    border-left: .3em solid transparent;
+    margin-left: 0.255em;
+    vertical-align: 0.255em;
+    content: '';
+    border-top: ${isUp ? '0' : '.3em solid'};
+    border-right: 0.3em solid transparent;
+    border-bottom: ${isUp ? '.3em solid' : '0'};
+    border-left: 0.3em solid transparent;
+  }
+
+  button:last-child:not([aria-label='dropdown']) span::after {
+    display: inline-block;
+    margin-left: 0.255em;
+    vertical-align: 0.255em;
+    content: '';
+    border-top: ${isUp ? '0' : '.3em solid'};
+    border-right: 0.3em solid transparent;
+    border-bottom: ${isUp ? '.3em solid' : '0'};
+    border-left: 0.3em solid transparent;
+  }
 `;
 
 export const styDropdownMenu = css`

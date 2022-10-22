@@ -5,7 +5,6 @@ import {
   styBtnIcon,
   styBtn,
   styBtnFw,
-  styBtnLink,
   styBtnIc,
   styBtnBlock,
   styBtnGroup,
@@ -54,26 +53,6 @@ const Button = (props: ButtonProps) => {
     setIsLoading(true);
   }, [variant, isOutline]);
 
-  if (variant === 'link') {
-    return (
-      <React.Fragment>
-        {isLoading && (
-          <button
-            onClick={onClick}
-            type="button"
-            className={cx(
-              styBtn(isRounded, size, variant === 'link'),
-              styBtnFw,
-              styBtnLink
-            )}
-          >
-            {children}
-          </button>
-        )}
-      </React.Fragment>
-    );
-  }
-
   if (isSplit) {
     if (isDropdown) {
       return (
@@ -84,7 +63,7 @@ const Button = (props: ButtonProps) => {
                 aria-label="dropdown"
                 className={cx(
                   styBtn(isRounded, size),
-                  styBtnBackground(typeColor, isOutline),
+                  styBtnBackground(typeColor, isOutline, variant),
                   styBtnIconSplit
                 )}
                 onMouseEnter={handleMouseEnter}
@@ -96,7 +75,7 @@ const Button = (props: ButtonProps) => {
                 onClick={onClick}
                 className={cx(
                   styBtn(isRounded, size),
-                  styBtnBackground(typeColor, isOutline),
+                  styBtnBackground(typeColor, isOutline, variant),
                   styBtnIconSplit
                 )}
                 onMouseEnter={handleMouseEnter}
@@ -116,7 +95,7 @@ const Button = (props: ButtonProps) => {
             onClick={onClick}
             className={cx(
               styBtn(isRounded, size),
-              styBtnBackground(typeColor, isOutline),
+              styBtnBackground(typeColor, isOutline, variant),
               styBtnIconSplit
             )}
             onMouseEnter={handleMouseEnter}
@@ -137,12 +116,20 @@ const Button = (props: ButtonProps) => {
       <React.Fragment>
         {isLoading && (
           <button
+            aria-label={!isDropdown ? 'dropdown' : ''}
             onClick={onClick}
-            className={cx(
-              styBtn(isIcon, size),
-              styBtnBackground(typeColor, isOutline),
-              styBtnIc
-            )}
+            className={
+              !isDropdown
+                ? cx(
+                    styBtn(isIcon, size),
+                    styBtnBackground(typeColor, isOutline, variant),
+                    styBtnIc
+                  )
+                : cx(
+                    styBtn(false, size),
+                    styBtnBackground(typeColor, isOutline, variant)
+                  )
+            }
             type="button"
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
@@ -164,12 +151,12 @@ const Button = (props: ButtonProps) => {
             isBlock
               ? cx(
                   styBtn(isRounded, size, true),
-                  styBtnBackground(typeColor, isOutline),
+                  styBtnBackground(typeColor, isOutline, variant),
                   styBtnBlock
                 )
               : cx(
                   styBtn(isRounded, size, isDropdown),
-                  styBtnBackground(typeColor, isOutline),
+                  styBtnBackground(typeColor, isOutline, variant),
                   styBtnFw
                 )
           }

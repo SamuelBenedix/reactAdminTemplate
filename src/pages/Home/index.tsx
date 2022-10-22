@@ -1,27 +1,23 @@
 import React from 'react';
-import { Dropdown } from '../../components';
+import { Button, Dropdown } from '../../components';
+import { styTest } from './styles';
 
 const Home = () => {
   return (
     <React.Fragment>
-      <Dropdown
-        variant="primary"
-        text="Dropdown"
-        size="large"
-        isSplit
+      <div className={styTest}></div>
+      <Dropdown variant="primary" text="Dropdown" isUp size="large">
+        <Dropdown.Header children="title" />
+        <Dropdown.Item onClick={() => {}} children="test" />
+      </Dropdown>
+      <Button
+        onClick={() => {}}
         icon="trash"
-      >
-        <Dropdown.Header children="title" />
-        <Dropdown.Item onClick={() => {}} children="test" />
-      </Dropdown>
-      <Dropdown variant="primary" text="Dropdown" size="medium">
-        <Dropdown.Header children="title" />
-        <Dropdown.Item onClick={() => {}} children="test" />
-      </Dropdown>
-      <Dropdown variant="primary" text="Dropdown" isOutline size="small">
-        <Dropdown.Header children="title" />
-        <Dropdown.Item onClick={() => {}} children="test" />
-      </Dropdown>
+        isIcon
+        variant="primary"
+        children="test"
+      />
+      <div className={styTest}></div>
     </React.Fragment>
   );
 };

@@ -9,10 +9,21 @@ import {
 import { styDropdown } from './styles';
 
 const Dropdown = (props: DropdownProps) => {
-  const { children, text, variant, isOutline, size, isSplit, icon } = props;
+  const {
+    children,
+    text,
+    variant,
+    isOutline,
+    size,
+    isSplit,
+    isIcon,
+    icon,
+    isUp = false,
+  } = props;
 
   const [active, setActive] = useState(false);
-  const dropdownRef = useRef<HTMLDivElement>(null);
+  const [elementPosition, setElementPosition] = useState(false);
+  const dropdownRef = useRef<any>(null);
 
   const onMouseDown = useCallback(
     (e: any) => {
@@ -23,9 +34,24 @@ const Dropdown = (props: DropdownProps) => {
     [dropdownRef, setActive]
   );
 
+  const onScroll = () => {
+    let offsetTop = dropdownRef.current.getBoundingClientRect().top;
+    console.log(offsetTop);
+    if (offsetTop < 400) {
+      setElementPosition(true);
+    } else {
+      setElementPosition(false);
+    }
+  };
+
   useEffect(() => {
     window.addEventListener('mousedown', onMouseDown);
-    return () => window.removeEventListener('mousedown', onMouseDown);
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('mousedown', onMouseDown);
+    };
   }, [onMouseDown]);
 
   const onClick = () => {
@@ -33,7 +59,7 @@ const Dropdown = (props: DropdownProps) => {
   };
 
   return (
-    <div ref={dropdownRef} className={styDropdown}>
+    <div ref={dropdownRef} className={styDropdown(isUp)}>
       <Button
         variant={variant}
         isOutline={isOutline}
@@ -42,9 +68,16 @@ const Dropdown = (props: DropdownProps) => {
         size={size}
         isSplit={isSplit}
         isDropdown
+        isIcon={isIcon}
         icon={icon}
       />
-      <DropdownMenu isOpen={active}>{children}</DropdownMenu>
+      <DropdownMenu
+        isOpen={active}
+        elementPosition={elementPosition}
+        size={size}
+      >
+        {children}
+      </DropdownMenu>
     </div>
   );
 };

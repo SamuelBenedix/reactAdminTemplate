@@ -8,6 +8,6 @@ export interface DropdownProps {
  isRounded?: boolean;
  isOutline?: boolean;
  isIcon?: boolean;
- isBlock?: boolean;
  text: React.ReactNode;
+ isUp?: boolean;
 }
