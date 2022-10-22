@@ -1,24 +1,9 @@
 import { css } from '@emotion/css';
 
-export const styDropdown = css`
-  display: inline-block;
-  position: relative;
-
-  button:first-child:not([aria-label="dropdown"])::after {
-    display: inline-block;
-    margin-left: .255em;
-    vertical-align: .255em;
-    content: "";
-    border-top: .3em solid;
-    border-right: .3em solid transparent;
-    border-bottom: 0;
-    border-left: .3em solid transparent;
-`;
-
 export const styDropdownMenu = css`
   position: absolute;
 
-  top: 100%;
+  top: 90%;
   left: 0;
   z-index: 1000;
 
@@ -43,24 +28,16 @@ export const styDropdownMenu = css`
 `;
 
 export const styDropdownMenuShow = css`
+  margin-top: 0.75rem;
+  font-size: 0.875rem;
+  box-shadow: none;
+
   position: absolute;
   will-change: transform;
-  top: 5px;
-  left: 0px;
 
   visibility: visible;
   transition: visibility 1s, opacity 0.5s linear;
   opacity: 1;
 
-  transform: translate3d(0px, 29px, 0px);
   display: block;
-`;
-
-export const styDropdownHeader = css`
-  display: block;
-  padding: 0.2rem 1.5rem;
-  margin-bottom: 0;
-  font-size: 0.7rem;
-  color: #fff;
-  white-space: nowrap;
 `;

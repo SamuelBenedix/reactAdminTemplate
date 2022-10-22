@@ -8,6 +8,7 @@ import {
   styBtnLink,
   styBtnIc,
   styBtnBlock,
+  styBtnGroup,
 } from './styles';
 import { cx } from '@emotion/css';
 import { Colors } from '../../../utils';
@@ -16,13 +17,14 @@ import IconOnly from './iconOnly';
 
 const Button = (props: ButtonProps) => {
   const {
-    type,
+    variant,
     children,
     isSplit,
     icon,
     isBlock = false,
     isRounded = false,
     isOutline = false,
+    isDropdown = false,
     size = 'medium',
     isIcon,
     onClick,
@@ -45,14 +47,14 @@ const Button = (props: ButtonProps) => {
   };
 
   useEffect(() => {
-    setTypeColor(Colors[type]);
+    setTypeColor(Colors[variant]);
     setIcColor(
-      isOutline ? Colors[type].backgroundColor : Colors[type]['color']
+      isOutline ? Colors[variant].backgroundColor : Colors[variant]['color']
     );
     setIsLoading(true);
-  }, [type, isOutline]);
+  }, [variant, isOutline]);
 
-  if (type === 'link') {
+  if (variant === 'link') {
     return (
       <React.Fragment>
         {isLoading && (
@@ -60,7 +62,7 @@ const Button = (props: ButtonProps) => {
             onClick={onClick}
             type="button"
             className={cx(
-              styBtn(isRounded, size, type === 'link'),
+              styBtn(isRounded, size, variant === 'link'),
               styBtnFw,
               styBtnLink
             )}
@@ -73,6 +75,40 @@ const Button = (props: ButtonProps) => {
   }
 
   if (isSplit) {
+    if (isDropdown) {
+      return (
+        <React.Fragment>
+          {isLoading && (
+            <div className={styBtnGroup}>
+              <button
+                aria-label="dropdown"
+                className={cx(
+                  styBtn(isRounded, size),
+                  styBtnBackground(typeColor, isOutline),
+                  styBtnIconSplit
+                )}
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+              >
+                <span>{children}</span>
+              </button>
+              <button
+                onClick={onClick}
+                className={cx(
+                  styBtn(isRounded, size),
+                  styBtnBackground(typeColor, isOutline),
+                  styBtnIconSplit
+                )}
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+              >
+                <span />
+              </button>
+            </div>
+          )}
+        </React.Fragment>
+      );
+    }
     return (
       <React.Fragment>
         {isLoading && (
@@ -127,12 +163,12 @@ const Button = (props: ButtonProps) => {
           className={
             isBlock
               ? cx(
-                  styBtn(isRounded, size),
+                  styBtn(isRounded, size, true),
                   styBtnBackground(typeColor, isOutline),
                   styBtnBlock
                 )
               : cx(
-                  styBtn(isRounded, size),
+                  styBtn(isRounded, size, isDropdown),
                   styBtnBackground(typeColor, isOutline),
                   styBtnFw
                 )

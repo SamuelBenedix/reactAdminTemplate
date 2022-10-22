@@ -1,31 +1,27 @@
-import { cx } from '@emotion/css';
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { DropdownProps } from '../../../@types/dropdown';
 import {
   DropdownItem,
   DropdownMenu,
-  DropdownToggle,
-  DropdownButton,
+  DropdownHeader,
+  Button,
 } from '../../atoms';
-import {
-  styDropdown,
-  styDropdownMenu,
-  styDropdownItem,
-  styDropdownHeader,
-  styDropdownMenuShow,
-} from './styles';
+import { styDropdown } from './styles';
 
 const Dropdown = (props: DropdownProps) => {
-  const { dropdownId } = props;
+  const { children, text, variant, isOutline, size, isSplit, icon } = props;
 
   const [active, setActive] = useState(false);
-  const dropdownRef = useRef(null);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
-  const onMouseDown = useCallback(() => {
-    if (dropdownRef.current) {
-      setActive(false);
-    }
-  }, [dropdownRef, setActive]);
+  const onMouseDown = useCallback(
+    (e: any) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+        setActive(false);
+      }
+    },
+    [dropdownRef, setActive]
+  );
 
   useEffect(() => {
     window.addEventListener('mousedown', onMouseDown);
@@ -38,24 +34,23 @@ const Dropdown = (props: DropdownProps) => {
 
   return (
     <div ref={dropdownRef} className={styDropdown}>
-      <DropdownButton type="primary" children="Dropdown" onClick={onClick} />
-      <div
-        aria-labelledby={dropdownId}
-        id={dropdownId}
-        className={
-          active ? cx(styDropdownMenu, styDropdownMenuShow) : styDropdownMenu
-        }
-      >
-        <div className={styDropdownHeader}>Dropdown Header</div>
-        <button className={styDropdownItem}>Dropdown</button>
-        <button className={styDropdownItem}>Dropdown</button>
-        <button className={styDropdownItem}>Dropdown</button>
-        <button className={styDropdownItem}>Dropdown</button>
-      </div>
+      <Button
+        variant={variant}
+        isOutline={isOutline}
+        children={text}
+        onClick={onClick}
+        size={size}
+        isSplit={isSplit}
+        isDropdown
+        icon={icon}
+      />
+      <DropdownMenu isOpen={active}>{children}</DropdownMenu>
     </div>
   );
 };
 
-export default Dropdown;
-
 Dropdown.displayName = 'Dropdown';
+Dropdown.Header = DropdownHeader;
+Dropdown.Item = DropdownItem;
+
+export default Dropdown;

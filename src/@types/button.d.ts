@@ -1,6 +1,6 @@
 import React from "react";
 export interface ButtonProps {
- type: 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info' | 'light' | 'dark' | 'link';
+ variant: 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info' | 'light' | 'dark' | 'link';
  size?: 'small' | 'medium' | 'large';
  children: React.ReactNode;
  isSplit?: boolean;
@@ -9,5 +9,6 @@ export interface ButtonProps {
  isOutline?: boolean;
  isIcon?: boolean;
  isBlock?: boolean;
- onClick?: (event: React.MouseEvent) => void;
+ onClick: (event: React.MouseEvent) => void;
+ isDropdown?: boolean;
 }

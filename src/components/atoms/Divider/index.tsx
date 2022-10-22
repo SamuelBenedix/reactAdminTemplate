@@ -1,8 +1,16 @@
 import React from 'react';
-import { styDivider } from './styles';
+import { styDivider, styDividerDropdown } from './styles';
 
-const Divider = () => {
-  return <hr className={styDivider} />;
+interface DividerProps {
+  type?: 'normal' | 'dropdown';
+}
+
+const Divider = (props: DividerProps) => {
+  const { type } = props;
+
+  return (
+    <hr className={type === 'dropdown' ? styDividerDropdown : styDivider} />
+  );
 };
 
 export default Divider;
