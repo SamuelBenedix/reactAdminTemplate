@@ -1,23 +1,30 @@
 import React from 'react';
-import { Button, Dropdown } from '../../components';
+import { Checkbox } from '../../components';
 import { styTest } from './styles';
 
 const Home = () => {
   return (
     <React.Fragment>
-      <div className={styTest}></div>
-      <Dropdown variant="primary" text="Dropdown" isUp size="large">
-        <Dropdown.Header children="title" />
-        <Dropdown.Item onClick={() => {}} children="test" />
-      </Dropdown>
-      <Button
-        onClick={() => {}}
-        icon="trash"
-        isIcon
-        variant="primary"
-        children="test"
-      />
-      <div className={styTest}></div>
+      <div className={styTest}>
+        <Checkbox
+          label="test"
+          isChecked={false}
+          isDisable={false}
+          value={false}
+        />
+        <Checkbox
+          label="test2"
+          isChecked={true}
+          isDisable={true}
+          value={true}
+        />
+        <Checkbox
+          label="test2"
+          isChecked={true}
+          isDisable={true}
+          value={false}
+        />
+      </div>
     </React.Fragment>
   );
 };

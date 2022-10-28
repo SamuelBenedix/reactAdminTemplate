@@ -5,7 +5,7 @@ const IcTrash = (props: IcProps) => {
   const { fill = '#fff', alt } = props;
 
   return (
-    <div role={alt}>
+    <span role={alt}>
       <svg
         width="16"
         height="16"
@@ -34,7 +34,7 @@ const IcTrash = (props: IcProps) => {
           fillOpacity="0.72"
         />
       </svg>
-    </div>
+    </span>
   );
 };
 
