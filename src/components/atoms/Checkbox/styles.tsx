@@ -41,14 +41,18 @@ export const styFormInput = css`
   }
 `;
 
-export const styHelper = (isChecked: boolean, isDisable: boolean) => css`
+export const styHelper = (
+  isChecked: boolean,
+  isDisable: boolean,
+  color: { backgroundColor: string }
+) => css`
   &:before {
     content: '';
     width: 16px;
     height: 16px;
     border-radius: 1px;
     border: ${isChecked ? '0' : '2'}px solid
-      ${isDisable ? '#2c2e33' : ' #0090e7'};
+      ${isDisable ? '#2c2e33' : color.backgroundColor};
     transition: all;
     transition-duration: 0s;
     transition-duration: 0.25s;
@@ -58,7 +62,7 @@ export const styHelper = (isChecked: boolean, isDisable: boolean) => css`
     background: ${isChecked && isDisable
       ? '#2c2e33'
       : isChecked
-      ? '#0090e7'
+      ? color.backgroundColor
       : 'transparent'};
 
     opacity: ${isDisable ? '.3' : '1'};

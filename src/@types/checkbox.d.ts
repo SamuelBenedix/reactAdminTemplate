@@ -4,4 +4,5 @@ export interface CheckboxProps {
  isChecked: boolean;
  value: bolean;
  isDisable: boolean;
+ variant: 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info' | 'light' | 'dark';
 }

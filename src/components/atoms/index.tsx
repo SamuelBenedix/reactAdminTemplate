@@ -6,6 +6,7 @@ import DropdownItem from './DropdownItem';
 import DropdownHeader from './DropdownHeader';
 import FormInput from './FormInput';
 import Checkbox from './Checkbox';
+import RadioButton from './RadioButton';
 
 export {
   Button,
@@ -16,4 +17,5 @@ export {
   DropdownHeader,
   FormInput,
   Checkbox,
+  RadioButton,
 };
